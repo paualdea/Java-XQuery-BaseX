@@ -30,12 +30,13 @@ public class Main {
         System.out.println("\n\t.:DB COMPLETA:.");
         System.out.println(gestor.mostrarDB());
 
-//        // Modificamos los premios indicando el ID y los premios a añadir
-//        gestor.anadirPremios(1, 2);
-//        // Volvemos a mostrar el XML completo
-//        gestor.mostrarDB();
-//
-//        // Finalizamos la conexión con el servidor de BaseX
-//        gestor.cerrarConexion();
+        // Modificamos los premios indicando el ID y los premios a añadir
+        gestor.anadirPremios(1, 2);
+        // Volvemos a mostrar la BD completa
+        System.out.println("\n\t.:DB COMPLETA:.");
+        System.out.println(gestor.mostrarDB());
+
+        // Finalizamos la conexión con el servidor de BaseX
+        gestor.cerrarConexion();
     }
 }

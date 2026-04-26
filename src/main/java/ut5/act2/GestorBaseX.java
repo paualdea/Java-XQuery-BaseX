@@ -1,6 +1,7 @@
 package ut5.act2;
 
 import org.basex.api.client.ClientSession;
+import org.basex.io.IO;
 
 import java.io.IOException;
 
@@ -32,13 +33,9 @@ public class GestorBaseX {
      * Controlamos la excepción de entrada y salida que puede provocar la sesión de conexión a la DB.
      */
     public void crearBD(String xml) throws IOException {
-        try {
-            // Ejecutamos una sentencia de creación de DB (AutoresDB) pasando el XML recibido cómo parámetro.
-            sesion.execute("CREATE DB AutoresDB " + xml);
-            System.out.println("DB AutoresDB creada.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        // Ejecutamos una sentencia de creación de DB (AutoresDB) pasando el XML recibido cómo parámetro.
+        sesion.execute("CREATE DB AutoresDB " + xml);
+        System.out.println("DB AutoresDB creada.");
     }
 
     /**
@@ -65,6 +62,36 @@ public class GestorBaseX {
      */
     public String mostrarDB() throws IOException {
         return sesion.execute("XQUERY /autores");
+    }
+
+    /**
+     * Función que añade un nodo 'premios' al ID del autor especificado.
+
+     * @param id
+     * Recibe cómo parámetro el ID del usuario al que le añadimos el nodo.
+     * @param premios
+     * Número de premios a añadir.
+     * @throws IOException
+     * Controlamos la excepción de entrada y salida que puede provocar la sesión de conexión a la DB.
+     */
+    public void anadirPremios (int id, int premios) throws IOException {
+        // Escribimos la sentencia XQuery de actualización
+        String sentencia = "insert node <premios>" + premios + "</premios> into /autores/autor[@id='" + id + "']";
+
+        // Ejecutamos la sentencia XQuery en el servidor
+        sesion.execute("XQUERY " + sentencia);
+        System.out.println("\nNodo <premios> añadido a usuario con ID " + id);
+    }
+
+    /**
+     * Función para cerrar de forma segura la conexión con el servidor BaseX.
+
+     * @throws IOException
+     * Controlamos la excepción de entrada y salida que puede provocar la sesión de conexión a la DB.
+     */
+    public void cerrarConexion() throws IOException {
+        sesion.close();
+        System.out.println("\nConexión al servidor BaseX finalizada.");
     }
 
 

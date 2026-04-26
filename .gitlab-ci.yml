@@ -14,18 +14,14 @@ stages:
 job_compilacion:
   stage: build
   script:
-    - |
-      mvn clean package -DskipTests
-      # 1. Buscamos la clase principal
-      MAIN_CLASS=$(grep -rl "public static void main" src/main/java | head -n 1 | sed 's|.*src/main/java/||' | sed 's/\.java//' | tr '/' '.')
-      echo "Clase principal detectada: $MAIN_CLASS"
-      echo "Main-Class: $MAIN_CLASS" > manifest.txt
-      jar ufm target/*.jar manifest.txt
-      mv target/*.jar $PACKAGE_NAME
+    - mvn clean package -DskipTests
+    - FAT_JAR=$(ls target/*-jar-with-dependencies.jar)
+    - mv "$FAT_JAR" "$PACKAGE_NAME"
   artifacts:
     paths:
       - $PACKAGE_NAME
     expire_in: 1 week
+
 
 job_upload:
   stage: upload

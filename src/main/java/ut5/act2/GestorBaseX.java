@@ -1,8 +1,6 @@
 package ut5.act2;
 
 import org.basex.api.client.ClientSession;
-import org.basex.io.IO;
-
 import java.io.IOException;
 
 /**
@@ -10,7 +8,7 @@ import java.io.IOException;
  */
 public class GestorBaseX {
     // Creamos la sesión de conexión al servidor de BaseX
-    private ClientSession sesion;
+    private final ClientSession sesion;
 
     /**
      * Constructor de la clase. Inicializa la conexión entre la aplicación y la DB.

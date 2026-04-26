@@ -6,7 +6,7 @@
 
     <groupId>ut5.act2</groupId>
     <artifactId>Java-XQuery-BaseX</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ut5.act1.Main</mainClass>
+                            <mainClass>ut5.act2.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

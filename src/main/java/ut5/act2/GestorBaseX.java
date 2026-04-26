@@ -41,5 +41,31 @@ public class GestorBaseX {
         }
     }
 
+    /**
+     * Función para ejecutar consultas XQuery sobre el servidor BaseX.
+     * Devuelve un String del resultado de la consulta.
+
+     * @param consulta
+     * Recibe cómo parámetro la consulta XQuery a ejecutar.
+     * @return resultadoConsulta
+     * Devuelve el resultado de la consulta XQuery.
+     */
+    public String ejecutarConsulta (String consulta) throws IOException {
+        // Ejecutamos la consulta en el servidor BaseX a través de la sesión
+        return sesion.execute("XQUERY " + consulta);
+    }
+
+    /**
+     * Función para mostrar el contenido de la DB.
+
+     * @throws IOException
+     * Controlamos la excepción de entrada y salida que puede provocar la sesión de conexión a la DB.
+     * @return DBCompleta
+     * Devuelve la DB completa tras ejecutar una consulta XQuery.
+     */
+    public String mostrarDB() throws IOException {
+        return sesion.execute("XQUERY /autores");
+    }
+
 
 }
